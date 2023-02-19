@@ -10,7 +10,7 @@ int main()
 	while (cin >> x >> y) Temena.push_back(tacka(x, y, 0));
 	mnogougao m1(Temena);
 	cout << "konveksni omotac : " << endl;
-	for (auto& tacka : m1.tacke)
+	for (auto& tacka : m1.Tacke)
 	{
 		cout << tacka.x << " " << tacka.y << endl;
 	}

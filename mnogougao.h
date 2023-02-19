@@ -38,24 +38,24 @@ private:
             if (x >= 0) return 0;
             return pi;
         }
-        float temp = acos((double)x / sqrt(pow(x, 2) + pow(y, 2)) * sgn(y));
-        return y < 0 ? temp + pi : temp;
+        float tmp = acos((double)x / sqrt(pow(x, 2) + pow(y, 2)) * sgn(y));
+        return y < 0 ? tmp + pi : tmp;
     }
 public:
-    vector<tacka> tacke;
+    vector<tacka> Tacke;
     mnogougao(vector<tacka> tacke)
     {
-        if (tacke.size() <= 3) this->tacke = tacke;
+        if (tacke.size() <= 3) this->Tacke = tacke;
         vector<tacka> omotac;
 
         prva = *min_element(tacke.begin(), tacke.end(),
-            [](const tacka& t1, const tacka& t2)
+            [](const tacka& tacka1, const tacka& tacka2)
             {
-                if (t1.y == t2.y)
+                if (tacka1.y == tacka2.y)
                 {
-                    return t1.x < t2.x;
+                    return tacka1.x < tacka2.x;
                 }
-                return t1.y < t2.y;
+                return tacka1.y < tacka2.y;
             });
 
         sort(tacke.begin(), tacke.end(),
@@ -66,33 +66,33 @@ public:
                 return ugaov1 < ugaov2;
             });
 
-        stack<tacka> s;
-        s.push(tacke[0]);
-        s.push(tacke[1]);
+        stack<tacka> stek;
+        stek.push(tacke[0]);
+        stek.push(tacke[1]);
 
         for (int i = 2; i < tacke.size(); i++)
         {
-            tacka t0, t1;
-            t1 = s.top();
-            s.pop();
-            t0 = s.top();
-            s.push(t1);
+            tacka tacka0, tacka1;
+            tacka1 = stek.top();
+            stek.pop();
+            tacka0 = stek.top();
+            stek.push(tacka1);
 
-            while ((t1.x - t0.x) * (tacke[i].y - s.top().y) - (t1.y - t0.y) * (tacke[i].x - s.top().x) < 0)
+            while ((tacka1.x - tacka0.x) * (tacke[i].y - stek.top().y) - (tacka1.y - tacka0.y) * (tacke[i].x - stek.top().x) < 0)
             {
-                s.pop();
-                t1 = s.top();
-                s.pop();
-                t0 = s.top();
-                s.push(t1);
+                stek.pop();
+                tacka1 = stek.top();
+                stek.pop();
+                tacka0 = stek.top();
+                stek.push(tacka1);
             }
-            s.push(tacke[i]);
+            stek.push(tacke[i]);
         }
-        while (!s.empty())
+        while (!stek.empty())
         {
-            omotac.push_back(s.top());
-            s.pop();
+            omotac.push_back(stek.top());
+            stek.pop();
         }
-        this->tacke = omotac;
+        this->Tacke = omotac;
     }
 };
