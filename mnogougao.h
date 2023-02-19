@@ -28,11 +28,11 @@ private:
     {
         return (((x) < 0) ? -1 : ((x) > 0));
     }
-    static float ugao(tacka t0, tacka t1)
+    static float ugao(tacka tacka0, tacka tacka1)
     {
         float x, y;
-        x = t1.x - t0.x;
-        y = t1.y - t0.y;
+        x = tacka1.x - tacka0.x;
+        y = tacka1.y - tacka0.y;
         if (y == 0)
         {
             if (x >= 0) return 0;
